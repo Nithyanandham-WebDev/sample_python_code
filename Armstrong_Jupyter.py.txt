@@ -1,0 +1,88 @@
+#!/usr/bin/env python
+# coding: utf-8
+
+# In[1]:
+
+
+Start_Index = 0
+Last_Index = 0
+Result_List=[]
+
+
+# In[2]:
+
+
+def SetInput(*Updated_Values):
+    global Start_Index
+    global Last_Index
+    Start_Index = Updated_Values[0]
+    Last_Index = Updated_Values[1]
+    return [Start_Index,Last_Index]
+
+
+# # In[3]:
+
+
+def Armstrong_No(No):
+    global Result_List
+    Temp_Value = 0
+    for Iter_Variable in str(No):
+    
+        Temp_Value += int(Iter_Variable)**3
+        if(Temp_Value == No):
+    
+            Result_List.append(Temp_Value)
+            return Result_List
+
+
+# In[4]:
+
+
+def Validation_Input(*Index_Values):
+    Temp_Start_Index = str(Index_Values[0])
+    Temp_Last_Index = str(Index_Values[1])
+    if(Temp_Start_Index.isnumeric()):
+        if(Temp_Last_Index.isnumeric()):
+            return 0
+        else:
+            print("Last Index Value Must Be a Integer")
+            Updated_Last_Index = input("Enter Last Index:")
+            SetInput(Temp_Start_Index,Updated_Last_Index)
+            Validation_Input(Temp_Start_Index,Updated_Last_Index)
+            return 0
+    else:
+        print("Start Index Value Must Be a Integer")
+        Updated_Start_Index = input("Enter Start Index:")
+        SetInput(Updated_Start_Index,Temp_Last_Index)
+        Validation_Input(Updated_Start_Index,Last_Index)
+        return 0
+
+   
+
+
+# In[5]:
+
+
+def Generate_Armstrong_No():
+    global Start_Index
+    global Last_Index
+    Start_Index = input("Enter Start Index:")
+    Last_Index = input("Enter Last Index:")
+    if(Validation_Input(Start_Index,Last_Index) == 0):
+        for Iterate_Variable in range(int(Start_Index),int(Last_Index)):
+            Armstrong_No(Iterate_Variable)
+    return Result_List                   
+             
+
+
+# In[7]:
+
+
+Generate_Armstrong_No()
+
+
+# In[ ]:
+
+
+
+
